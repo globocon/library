@@ -1,26 +1,80 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@layer base {
+  html, body {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans Malayalam', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f8fafc;
+    color: #0f172a;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  * {
+    box-sizing: border-box;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* High-Contrast Accessible Form Controls */
+.form-input-box {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0f172a;
+  background-color: #ffffff;
+  border: 2px solid #cbd5e1;
+  border-radius: 0.875rem;
+  transition: all 0.15s ease-in-out;
+}
+
+.form-input-box:focus {
+  outline: none;
+  border-color: #064e3b;
+  box-shadow: 0 0 0 4px rgba(6, 78, 59, 0.15);
+  background-color: #ffffff;
+}
+
+.form-input-box::placeholder {
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+/* Accessible Radio Button Selection Cards */
+.radio-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background-color: #ffffff;
+  border: 2px solid #cbd5e1;
+  border-radius: 0.875rem;
+  cursor: pointer;
+  font-weight: 700;
+  color: #1e293b;
+  transition: all 0.15s ease-in-out;
+  user-select: none;
+}
+
+.radio-card:hover {
+  border-color: #94a3b8;
+  background-color: #f8fafc;
+}
+
+.radio-card.active {
+  border-color: #064e3b;
+  background-color: #f0fdf4;
+  color: #064e3b;
+  box-shadow: 0 0 0 1px #064e3b;
+}
+
+.radio-card input[type="radio"] {
+  accent-color: #064e3b;
+  width: 1.15rem;
+  height: 1.15rem;
+  cursor: pointer;
 }
