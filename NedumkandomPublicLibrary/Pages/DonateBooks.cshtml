@@ -1,0 +1,72 @@
+@page "/donate-books"
+@model NedumkandomPublicLibrary.Pages.DonateBooksModel
+@{
+    ViewData["Title"] = "പുസ്തക സംഭാവന | നെടുങ്കണ്ടം പബ്ലിക് ലൈബ്രറി";
+}
+
+<div class="max-w-2xl mx-auto py-10 px-4 space-y-8">
+    <div class="text-center space-y-2 border-b border-slate-200 pb-6">
+        <h1 class="text-3xl font-bold text-slate-900">പുസ്തക സംഭാവന</h1>
+        <p class="text-xs text-slate-600 leading-relaxed">
+            നിങ്ങളുടെ വീട്ടിൽ വായിച്ചുകഴിഞ്ഞ് മറ്റുള്ളവർക്ക് പ്രയോജനപ്പെടുന്ന നല്ല പുസ്തകങ്ങളുണ്ടോ? അവ ഗ്രന്ഥശാലയ്ക്ക് സംഭാവന ചെയ്യാം.
+        </p>
+    </div>
+
+    @if (Model.IsSubmitted)
+    {
+        <div class="custom-card p-8 text-center space-y-3 bg-emerald-50/50 border-emerald-200">
+            <span class="text-3xl text-[#0d5c46] mx-auto block">✓</span>
+            <h2 class="text-lg font-bold text-[#0d5c46]">വിവരം ലഭിച്ചു!</h2>
+            <p class="text-xs text-slate-600">@Model.SuccessMessage</p>
+            <div class="text-xs font-mono font-bold text-slate-700">Ref: @Model.ReferenceId</div>
+            <div class="pt-3">
+                <a href="/donate-books" class="btn-secondary text-xs py-1.5 px-4">മറ്റൊരു സംഭാവന അറിയിക്കുക</a>
+            </div>
+        </div>
+    }
+    else
+    {
+        <form method="post" class="custom-card p-6 md:p-8 space-y-4">
+            @Html.AntiForgeryToken()
+            <h2 class="text-base font-bold text-[#0d5c46] border-b border-slate-100 pb-2">
+                [ പുസ്തകം സംഭാവന ചെയ്യാം ]
+            </h2>
+
+            @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+            {
+                <div class="p-3 bg-red-50 border border-red-200 rounded text-xs text-red-700">
+                    @Model.ErrorMessage
+                </div>
+            }
+
+            <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">പേര് *</label>
+                <input type="text" asp-for="Form.Name" required placeholder="പേര് നൽകുക" class="w-full px-3 py-2 text-sm border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0d5c46]" />
+                <span asp-validation-for="Form.Name" class="text-xs text-red-600"></span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">മൊബൈൽ *</label>
+                    <input type="tel" asp-for="Form.Mobile" required placeholder="10 അക്ക മൊബൈൽ" class="w-full px-3 py-2 text-sm border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0d5c46]" />
+                    <span asp-validation-for="Form.Mobile" class="text-xs text-red-600"></span>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">പുസ്തകങ്ങളുടെ എണ്ണം *</label>
+                    <input type="number" asp-for="Form.BookCount" required min="1" placeholder="ഉദാ: 5" class="w-full px-3 py-2 text-sm border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0d5c46]" />
+                    <span asp-validation-for="Form.BookCount" class="text-xs text-red-600"></span>
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">സൗകര്യപ്രദമായ സമയം</label>
+                <input type="text" asp-for="Form.PreferredTime" placeholder="ഉദാ: ശനിയാഴ്ച വൈകുന്നേരം" class="w-full px-3 py-2 text-sm border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0d5c46]" />
+            </div>
+
+            <button type="submit" class="btn-primary w-full text-xs py-2.5">
+                [ വിവരങ്ങൾ സമർപ്പിക്കുക ]
+            </button>
+        </form>
+    }
+</div>

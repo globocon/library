@@ -1,0 +1,31 @@
+@page "/activities"
+@{
+    ViewData["Title"] = "ഞങ്ങളുടെ പ്രവർത്തനങ്ങൾ | നെടുങ്കണ്ടം പബ്ലിക് ലൈബ്രറി";
+    var activities = new[]
+    {
+        new { Title = "Community Programmes", Desc = "സമൂഹത്തിനൊപ്പം ചേർന്നുള്ള സാംസ്കാരിക വികസന പരിപാടികൾ." },
+        new { Title = "Reading Campaigns", Desc = "വായനാ സംസ്കാരം പ്രോത്സാഹിപ്പിക്കുന്ന ക്യാമ്പയിനുകൾ." },
+        new { Title = "Educational Activities", Desc = "വിദ്യാർത്ഥികൾക്കുള്ള സെമിനാറുകളും പഠന പരിപാടികളും." },
+        new { Title = "Children’s Activities", Desc = "കുട്ടികൾക്കായുള്ള ചിത്രരചന, ക്വിസ്, നാടക മത്സരങ്ങൾ." },
+        new { Title = "Family Reading", Desc = "കുടുംബവായന പ്രോത്സാഹിപ്പിക്കുന്ന സംരംഭങ്ങൾ." },
+        new { Title = "Social Awareness", Desc = "സാമൂഹിക ബോധവൽക്കരണ പരിപാടികൾ." },
+        new { Title = "Cultural Activities", Desc = "പ്രാദേശിക കലാ-സാംസ്കാരിക പരിപാടികൾ." },
+    };
+}
+
+<div class="max-w-4xl mx-auto py-10 px-4 space-y-8">
+    <div class="text-center space-y-2 border-b border-slate-200 pb-6">
+        <h1 class="text-3xl font-bold text-slate-900">ഞങ്ങളുടെ പ്രവർത്തനങ്ങൾ</h1>
+        <p class="text-xs text-slate-600">ഗ്രന്ഥശാല പുസ്തകങ്ങൾ നൽകുന്ന ഒരു ഇടം മാത്രമല്ല — സമൂഹത്തിനൊപ്പം വളരുന്ന സംരംഭമാണ്.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        @foreach (var act in activities)
+        {
+            <div class="custom-card p-5 space-y-1">
+                <h3 class="font-bold text-sm text-[#0d5c46]">@act.Title</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">@act.Desc</p>
+            </div>
+        }
+    </div>
+</div>

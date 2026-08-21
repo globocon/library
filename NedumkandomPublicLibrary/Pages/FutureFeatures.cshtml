@@ -1,0 +1,73 @@
+@page "/future-features"
+@{
+    ViewData["Title"] = "ഭാവിയിൽ ചേർക്കാവുന്ന സൗകര്യങ്ങൾ | നെടുങ്കണ്ടം പബ്ലിക് ലൈബ്രറി";
+    var features = new[]
+    {
+        new {
+            Title = "Member Login & Account Dashboard",
+            Desc = "ഓരോ അംഗത്തിനും സ്വന്തം അക്കൗണ്ടിൽ പ്രവേശിച്ച് കൈവശമുള്ള പുസ്തകങ്ങളും റിട്ടേൺ തീയതികളും പരിശോധിക്കാനുള്ള സൗകര്യം.",
+            Icon = "🔒"
+        },
+        new {
+            Title = "Digital Membership Card",
+            Desc = "മൊബൈലിൽ തന്നെ ഡിജിറ്റൽ അംഗത്വ കാർഡ് ലഭ്യമാക്കുന്ന സംവിധാനം.",
+            Icon = "📱"
+        },
+        new {
+            Title = "QR Code Integration",
+            Desc = "അംഗത്വ കാർഡിലും പുസ്തകങ്ങളിലും QR കോഡ് സ്കാനിംഗ് സൗകര്യം.",
+            Icon = "🔳"
+        },
+        new {
+            Title = "Online Book Reservation",
+            Desc = "വീട്ടിൽ ഇരുന്ന് തന്നെ ആവശ്യമായ പുസ്തകം മുൻകൂട്ടി Reserve ചെയ്യാനുള്ള സൗകര്യം.",
+            Icon = "✨"
+        },
+        new {
+            Title = "SMS / WhatsApp Alerts",
+            Desc = "പുസ്തകം ലഭിക്കുമ്പോഴും റിട്ടേൺ തീയതി അടുത്തുവരുമ്പോഴും ലഭിക്കുന്ന ഓട്ടോമാറ്റിക് അറിയിപ്പുകൾ.",
+            Icon = "🔔"
+        },
+        new {
+            Title = "Online Payment Gateway",
+            Desc = "അംഗത്വ ഫീസും പുതുക്കൽ തുകയും ഓൺലൈനായി അടയ്ക്കാനുള്ള സൗകര്യം.",
+            Icon = "💳"
+        },
+        new {
+            Title = "Admin Dashboard",
+            Desc = "ലൈബ്രറി ജീവനക്കാർക്ക് അംഗങ്ങൾ, സർക്കുലേഷൻ, ഫൈൻ, റിപ്പോർട്ടുകൾ എന്നിവ കൈകാര്യം ചെയ്യാനുള്ള പൂർണ്ണ അഡ്മിൻ പാനൽ.",
+            Icon = "📊"
+        }
+    };
+}
+
+<div class="max-w-4xl mx-auto py-10 px-4 space-y-8">
+    <!-- Header Banner -->
+    <div class="bg-amber-50 border border-amber-200 rounded-xl p-6 text-center space-y-3 shadow-xs">
+        <div class="w-12 h-12 bg-amber-100 text-amber-800 rounded-full flex items-center justify-center mx-auto text-xl">
+            ✨
+        </div>
+        <h1 class="text-2xl font-bold text-amber-950">
+            ഭാവിയിൽ ചേർക്കാവുന്ന സൗകര്യങ്ങൾ
+        </h1>
+        <p class="text-xs text-slate-700 max-w-2xl mx-auto leading-relaxed">
+            നെടുങ്കണ്ടം പബ്ലിക് ലൈബ്രറി കൂടുതൽ ആധുനികവൽക്കരിക്കുന്നതിന്റെ ഭാഗമായി ഭാവി ഘട്ടങ്ങളിൽ ഉൾപ്പെടുത്താൻ ഉദ്ദേശിക്കുന്ന ഡിജിറ്റൽ സൗകര്യങ്ങളുടെ വിവരം താഴെ നൽകുന്നു.
+        </p>
+    </div>
+
+    <!-- Feature Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        @foreach (var f in features)
+        {
+            <div class="custom-card p-5 space-y-2">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center shrink-0 text-base">
+                        @f.Icon
+                    </div>
+                    <h3 class="font-bold text-sm text-slate-900">@f.Title</h3>
+                </div>
+                <p class="text-xs text-slate-600 pl-12 leading-relaxed">@f.Desc</p>
+            </div>
+        }
+    </div>
+</div>

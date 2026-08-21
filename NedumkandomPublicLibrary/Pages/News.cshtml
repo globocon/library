@@ -1,0 +1,37 @@
+@page "/news"
+@{
+    ViewData["Title"] = "വാർത്തകളും അറിയിപ്പുകളും | നെടുങ്കണ്ടം പബ്ലിക് ലൈബ്രറി";
+    var newsList = new[]
+    {
+        new { Title = "അംഗത്വ രജിസ്ട്രേഷൻ ആരംഭിച്ചു", Tag = "അറിയിപ്പ്" },
+        new { Title = "പുതിയ പുസ്തകങ്ങൾ ലഭ്യമായി", Tag = "ശേഖരം" },
+        new { Title = "പുസ്തകമേള", Tag = "പരിപാടി" },
+        new { Title = "വായനാമത്സരം", Tag = "മത്സരം" },
+        new { Title = "ലൈബ്രറി അവധി", Tag = "പ്രത്യേകം" },
+        new { Title = "പ്രത്യേക പരിപാടി", Tag = "അറിയിപ്പ്" },
+    };
+}
+
+<div class="max-w-4xl mx-auto py-10 px-4 space-y-8">
+    <div class="text-center space-y-2 border-b border-slate-200 pb-6">
+        <h1 class="text-3xl font-bold text-slate-900">വാർത്തകളും അറിയിപ്പുകളും</h1>
+        <p class="text-xs text-slate-600">ലൈബ്രറിയിലെ ഏറ്റവും പുതിയ അറിയിപ്പുകൾ ഇവിടെ കാണാം.</p>
+    </div>
+
+    <div class="space-y-3">
+        @foreach (var n in newsList)
+        {
+            <div class="custom-card p-4 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center shrink-0">
+                        🔔
+                    </div>
+                    <span class="font-bold text-xs sm:text-sm text-slate-800">@n.Title</span>
+                </div>
+                <span class="bg-slate-100 text-slate-600 text-[10px] font-semibold px-2.5 py-1 rounded">
+                    @n.Tag
+                </span>
+            </div>
+        }
+    </div>
+</div>

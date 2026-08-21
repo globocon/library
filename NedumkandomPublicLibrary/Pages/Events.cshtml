@@ -1,0 +1,70 @@
+@page "/events"
+@{
+    ViewData["Title"] = "പരിപാടികൾ | നെടുങ്കണ്ടം പബ്ലിക് ലൈബ്രറി";
+    var categories = new[]
+    {
+        "സാഹിത്യ സംഗമം", "പുസ്തക പ്രകാശനം", "പ്രഭാഷണം", 
+        "സാംസ്കാരിക പരിപാടികൾ", "കുട്ടികളുടെ പരിപാടികൾ", 
+        "വിദ്യാഭ്യാസ സെമിനാർ", "മത്സരങ്ങൾ", "പരിസ്ഥിതി പരിപാടികൾ", 
+        "ദേശീയ ദിന പരിപാടികൾ"
+    };
+
+    var calendarEvents = new[]
+    {
+        new { Date = "//2026", Event = "വായനാദിനം", Time = ":", Location = "ലൈബ്രറി ഹാൾ" },
+        new { Date = "//2026", Event = "സാഹിത്യ ചർച്ച", Time = ":", Location = "വായനാമുറി" },
+        new { Date = "//2026", Event = "കുട്ടികളുടെ പരിപാടി", Time = ":", Location = "ലൈബ്രറി" },
+    };
+}
+
+<div class="max-w-4xl mx-auto py-10 px-4 space-y-10">
+    <div class="text-center space-y-2 border-b border-slate-200 pb-6">
+        <h1 class="text-3xl font-bold text-slate-900">പരിപാടികൾ</h1>
+        <p class="text-xs text-slate-600">ഗ്രന്ഥശാലയിൽ സംഘടിപ്പിക്കുന്ന എല്ലാ പരിപാടികളും ഇവിടെ പ്രസിദ്ധീകരിക്കുന്നു.</p>
+    </div>
+
+    <!-- Categories -->
+    <div class="space-y-3">
+        <h2 class="text-base font-bold text-slate-900">പരിപാടികളുടെ വിഭാഗങ്ങൾ</h2>
+        <div class="flex flex-wrap gap-2">
+            @foreach (var cat in categories)
+            {
+                <span class="bg-[#0d5c46] text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-xs">
+                    @cat
+                </span>
+            }
+        </div>
+    </div>
+
+    <!-- Event Calendar Table -->
+    <div class="custom-card p-6 space-y-4">
+        <div class="flex items-center gap-2 text-base font-bold text-[#0d5c46]">
+            <span>📅</span>
+            <span>പരിപാടി കലണ്ടർ</span>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="w-full text-xs text-left border-collapse border border-slate-200">
+                <thead>
+                    <tr class="bg-slate-100 font-bold border-b border-slate-200">
+                        <th class="p-3 border border-slate-200">തീയതി</th>
+                        <th class="p-3 border border-slate-200">പരിപാടി</th>
+                        <th class="p-3 border border-slate-200">സമയം</th>
+                        <th class="p-3 border border-slate-200">സ്ഥലം</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var ev in calendarEvents)
+                    {
+                        <tr class="hover:bg-slate-50 border-b border-slate-200">
+                            <td class="p-3 font-mono border border-slate-200">@ev.Date</td>
+                            <td class="p-3 font-semibold text-slate-800 border border-slate-200">@ev.Event</td>
+                            <td class="p-3 border border-slate-200">@ev.Time</td>
+                            <td class="p-3 border border-slate-200">@ev.Location</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

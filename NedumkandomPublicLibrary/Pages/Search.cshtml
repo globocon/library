@@ -1,0 +1,59 @@
+@page "/search"
+@{
+    ViewData["Title"] = "പുസ്തകങ്ങൾ തിരയാം | നെടുങ്കണ്ടം പബ്ലിക് ലൈബ്രറി";
+}
+
+<div class="max-w-4xl mx-auto py-10 px-4 space-y-8">
+    <!-- Page Header -->
+    <div class="text-center space-y-2 border-b border-slate-200 pb-6">
+        <h1 class="text-3xl font-bold text-slate-900">പുസ്തകങ്ങൾ തിരയാം</h1>
+        <p class="text-xs text-slate-600">
+            നിങ്ങൾക്ക് ആവശ്യമുള്ള പുസ്തകം ഗ്രന്ഥശാലയിൽ ഉണ്ടോ എന്ന് ഓൺലൈനായി പരിശോധിക്കാം.
+        </p>
+    </div>
+
+    <!-- Search Architecture UI Form -->
+    <div class="custom-card p-6 md:p-8 space-y-6">
+        <div class="flex items-center gap-2 text-sm font-bold text-[#0d5c46]">
+            <span>🔍</span>
+            <span>തിരയാനുള്ള മാർഗങ്ങൾ</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">
+                    തിരയുന്ന മേഖല
+                </label>
+                <select class="w-full px-3 py-2 text-sm border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0d5c46] focus:outline-none">
+                    <option value="title">പുസ്തകത്തിന്റെ പേര്</option>
+                    <option value="author">എഴുത്തുകാരൻ</option>
+                    <option value="subject">വിഷയം</option>
+                    <option value="publisher">പ്രസാധകൻ</option>
+                    <option value="category">വിഭാഗം</option>
+                </select>
+            </div>
+
+            <div class="md:col-span-2">
+                <label class="block text-xs font-bold text-slate-700 mb-1">
+                    അന്വേഷിക്കേണ്ട വാക്ക് (ഉദാഹരണം: “ബാല്യകാലസഖി”)
+                </label>
+                <div class="flex gap-2">
+                    <input type="text" placeholder="പുസ്തകത്തിന്റെ പേരോ എഴുത്തുകാരന്റെ പേരോ നൽകുക..." class="w-full px-3 py-2 text-sm border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0d5c46] focus:outline-none" />
+                    <button type="button" class="btn-primary text-xs px-5 shrink-0">
+                        തിരയുക
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-600 space-y-1">
+            <div class="font-bold text-slate-800 flex items-center gap-1.5">
+                <span>ℹ️</span>
+                <span>ശ്രദ്ധിക്കുക:</span>
+            </div>
+            <p>
+                ലൈബ്രറിയുടെ പൂർണ്ണമായ പുസ്തക കാറ്റലോഗ് (OPAC) ഡിജിറ്റലൈസ് ചെയ്യുന്ന പ്രവർത്തനങ്ങൾ പുരോഗമിക്കുകയാണ്. ലഭ്യമായ പുസ്തകങ്ങൾ സംബന്ധിച്ച അന്വേഷണങ്ങൾക്ക് നേരിട്ടോ ഫോൺ വഴിയോ ബന്ധപ്പെടാവുന്നതാണ്.
+            </p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="NedumkandomPublicLibrary.Tests/NedumkandomPublicLibrary.Tests.csproj" />
+  <Project Path="NedumkandomPublicLibrary/NedumkandomPublicLibrary.csproj" />
+</Solution>

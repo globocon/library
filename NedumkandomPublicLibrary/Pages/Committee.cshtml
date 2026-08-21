@@ -1,0 +1,91 @@
+@page "/committee"
+@{
+    ViewData["Title"] = "ലൈബ്രറി കമ്മിറ്റി & വിവരങ്ങൾ | നെടുങ്കണ്ടം പബ്ലിക് ലൈബ്രറി";
+    var committeeRoles = new[]
+    {
+        new { Title = "പ്രസിഡന്റ്", Name = "—" },
+        new { Title = "വൈസ് പ്രസിഡന്റ്", Name = "—" },
+        new { Title = "സെക്രട്ടറി", Name = "—" },
+        new { Title = "ജോയിന്റ് സെക്രട്ടറി", Name = "—" },
+        new { Title = "ട്രഷറർ", Name = "—" },
+        new { Title = "ലൈബ്രേറിയൻ", Name = "—" },
+        new { Title = "എക്സിക്യൂട്ടീവ് അംഗങ്ങൾ", Name = "—" },
+    };
+
+    var basicInfo = new[]
+    {
+        new { Label = "ലൈബ്രറിയുടെ പേര്", Value = "നെടുങ്കണ്ടം പബ്ലിക് ലൈബ്രറി" },
+        new { Label = "സ്ഥാപിതമായ വർഷം", Value = "—" },
+        new { Label = "രജിസ്ട്രേഷൻ നമ്പർ", Value = "—" },
+        new { Label = "ലൈബ്രറി കൗൺസിൽ", Value = "—" },
+        new { Label = "ജില്ല", Value = "ഇടുക്കി" },
+        new { Label = "താലൂക്ക്", Value = "ഉടുമ്പൻചോല" },
+        new { Label = "പഞ്ചായത്ത് / മുനിസിപ്പാലിറ്റി", Value = "നെടുങ്കണ്ടം" },
+        new { Label = "പുസ്തകങ്ങളുടെ എണ്ണം", Value = "—" },
+        new { Label = "അംഗങ്ങളുടെ എണ്ണം", Value = "—" },
+        new { Label = "പ്രവർത്തന സമയം", Value = "3:00 PM – 8:00 PM" },
+    };
+}
+
+<div class="max-w-4xl mx-auto py-10 px-4 space-y-10">
+    <div class="text-center space-y-2 border-b border-slate-200 pb-6">
+        <h1 class="text-3xl font-bold text-slate-900">ലൈബ്രറി കമ്മിറ്റി & വിവരങ്ങൾ</h1>
+        <p class="text-xs text-slate-600">നെടുങ്കണ്ടം പബ്ലിക് ലൈബ്രറി — ഭരണസമിതിയും അടിസ്ഥാന വിവരങ്ങളും</p>
+    </div>
+
+    <!-- Executive Committee Table -->
+    <div class="custom-card p-6 md:p-8 space-y-4">
+        <div class="flex items-center gap-2 text-base font-bold text-[#0d5c46] border-b border-slate-100 pb-3">
+            <span>👥</span>
+            <span>ഭരണസമിതി (Executive Committee)</span>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="w-full text-xs text-left border-collapse border border-slate-200">
+                <thead>
+                    <tr class="bg-slate-100 font-bold border-b border-slate-200 text-slate-800">
+                        <th class="p-3 border border-slate-200">ചുമതല</th>
+                        <th class="p-3 border border-slate-200">പേര്</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var role in committeeRoles)
+                    {
+                        <tr class="hover:bg-slate-50 border-b border-slate-200">
+                            <td class="p-3 font-semibold text-slate-800 border border-slate-200">@role.Title</td>
+                            <td class="p-3 border border-slate-200">@role.Name</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Basic Library Facts Table -->
+    <div class="custom-card p-6 md:p-8 space-y-4">
+        <div class="flex items-center gap-2 text-base font-bold text-[#0d5c46] border-b border-slate-100 pb-3">
+            <span>🏛️</span>
+            <span>അടിസ്ഥാന വിവരങ്ങൾ</span>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="w-full text-xs text-left border-collapse border border-slate-200">
+                <thead>
+                    <tr class="bg-slate-100 font-bold border-b border-slate-200 text-slate-800">
+                        <th class="p-3 border border-slate-200 w-1/2">വിവരം</th>
+                        <th class="p-3 border border-slate-200 w-1/2">വിശദാംശങ്ങൾ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var info in basicInfo)
+                    {
+                        <tr class="hover:bg-slate-50 border-b border-slate-200">
+                            <td class="p-3 font-semibold text-slate-800 border border-slate-200">@info.Label</td>
+                            <td class="p-3 border border-slate-200">@info.Value</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

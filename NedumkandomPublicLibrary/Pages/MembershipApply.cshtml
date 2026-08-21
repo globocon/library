@@ -1,0 +1,20 @@
+@page "/membership-apply"
+@model NedumkandomPublicLibrary.Pages.MembershipApplyModel
+@{
+    ViewData["Title"] = "ഓൺലൈൻ അംഗത്വ അപേക്ഷ | നെടുങ്കണ്ടം പബ്ലിക് ലൈബ്രറി";
+}
+
+<div class="py-8 px-4 space-y-6">
+    <div class="max-w-4xl mx-auto text-center space-y-2">
+        <h1 class="text-3xl font-bold text-slate-900">
+            ഓൺലൈൻ അംഗത്വ അപേക്ഷ
+        </h1>
+        <p class="text-xs text-slate-600">
+            @Model.Library.Name — അംഗത്വ അപേക്ഷാ ഫോം. എല്ലാ വിവരങ്ങളും ശരിയായി പൂരിപ്പിച്ച് സമർപ്പിക്കുക.
+        </p>
+    </div>
+
+    <div class="max-w-4xl mx-auto">
+        @await Html.PartialAsync("_ApplicationForm")
+    </div>
+</div>

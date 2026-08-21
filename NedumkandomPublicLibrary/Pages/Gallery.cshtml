@@ -1,0 +1,39 @@
+@page "/gallery"
+@{
+    ViewData["Title"] = "ഫോട്ടോ ഗാലറി | നെടുങ്കണ്ടം പബ്ലിക് ലൈബ്രറി";
+    var categories = new[]
+    {
+        "കെട്ടിടം", "വായനാമുറി", "പുസ്തക ശേഖരം", 
+        "കുട്ടികളുടെ പരിപാടികൾ", "സാഹിത്യ പരിപാടികൾ", 
+        "അംഗങ്ങൾ", "പുരസ്കാരങ്ങൾ", "പ്രത്യേക പരിപാടികൾ"
+    };
+}
+
+<div class="max-w-5xl mx-auto py-10 px-4 space-y-8">
+    <div class="text-center space-y-2 border-b border-slate-200 pb-6">
+        <h1 class="text-3xl font-bold text-slate-900">ഫോട്ടോ ഗാലറി</h1>
+        <p class="text-xs text-slate-600">നെടുങ്കണ്ടം പബ്ലിക് ലൈബ്രറിയുടെ വിവിധ ചിത്രങ്ങൾ ഇവിടെ കാണാം.</p>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-2">
+        @foreach (var cat in categories)
+        {
+            <span class="bg-slate-100 border border-slate-200 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-md">
+                @cat
+            </span>
+        }
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        @foreach (var cat in categories)
+        {
+            <div class="custom-card p-6 text-center space-y-3 bg-slate-50 flex flex-col items-center justify-center min-h-[160px]">
+                <div class="w-12 h-12 bg-emerald-100 text-[#0d5c46] rounded-full flex items-center justify-center text-lg">
+                    📷
+                </div>
+                <div class="font-bold text-xs text-slate-800">@cat</div>
+                <div class="text-[10px] text-slate-400">ലൈബ്രറി ചിത്രങ്ങൾ</div>
+            </div>
+        }
+    </div>
+</div>

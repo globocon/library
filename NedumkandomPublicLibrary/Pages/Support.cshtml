@@ -1,0 +1,48 @@
+@page "/support"
+@{
+    ViewData["Title"] = "ഗ്രന്ഥശാലയെ പിന്തുണയ്ക്കാം | നെടുങ്കണ്ടം പബ്ലിക് ലൈബ്രറി";
+    var supportOptions = new[]
+    {
+        new { Title = "പുസ്തകങ്ങൾ സംഭാവന ചെയ്യാം", Href = "/donate-books", Icon = "📖", Desc = "നല്ല പുസ്തകങ്ങൾ ഗ്രന്ഥശാലയ്ക്ക് സംഭാവനയായി നൽകാം." },
+        new { Title = "സാമ്പത്തിക സഹായം നൽകാം", Href = "/contact", Icon = "💵", Desc = "ലൈബ്രറിയുടെ വികസനത്തിനായി സാമ്പത്തിക സഹായം നൽകാം." },
+        new { Title = "ഡിജിറ്റൽ സൗകര്യങ്ങൾക്കായി സഹായിക്കാം", Href = "/contact", Icon = "💻", Desc = "കമ്പ്യൂട്ടറുകളും ഇന്റർനെറ്റ് സൗകര്യങ്ങളും വികസിപ്പിക്കാൻ സഹായിക്കാം." },
+        new { Title = "ഫർണിച്ചർ / ഉപകരണങ്ങൾ നൽകാം", Href = "/contact", Icon = "🪑", Desc = "വായനമുറിക്കായുള്ള ഫർണിച്ചറുകൾ നൽകാം." },
+        new { Title = "സന്നദ്ധ പ്രവർത്തകനാകാം", Href = "/volunteer", Icon = "👥", Desc = "പ്രവർത്തനങ്ങളിൽ സന്നദ്ധ പ്രവർത്തകനായി പങ്കാളിയാകാം." },
+    };
+}
+
+<div class="max-w-4xl mx-auto py-10 px-4 space-y-8">
+    <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-6 text-center space-y-2">
+        <span class="text-3xl text-[#0d5c46] mx-auto block">❤️</span>
+        <h1 class="text-3xl font-bold text-[#0d5c46]">ഗ്രന്ഥശാലയെ പിന്തുണയ്ക്കാം</h1>
+        <p class="text-xs text-slate-700 max-w-2xl mx-auto leading-relaxed">
+            നമ്മുടെ പ്രദേശത്തെ ഒരു മികച്ച അറിവിന്റെ കേന്ദ്രമായി ഗ്രന്ഥശാലയെ വളർത്താൻ നിങ്ങളുടെ പിന്തുണ ആവശ്യമാണ്.
+        </p>
+    </div>
+
+    <div class="space-y-4">
+        <h2 class="text-base font-bold text-slate-900 border-b border-slate-200 pb-2">
+            നിങ്ങൾക്ക് സഹായിക്കാം:
+        </h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            @foreach (var opt in supportOptions)
+            {
+                <div class="custom-card p-5 space-y-3 flex flex-col justify-between">
+                    <div class="space-y-2">
+                        <div class="w-9 h-9 rounded-lg bg-emerald-100 text-[#0d5c46] flex items-center justify-center text-base">
+                            @opt.Icon
+                        </div>
+                        <h3 class="font-bold text-sm text-slate-900">@opt.Title</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">@opt.Desc</p>
+                    </div>
+                    <div>
+                        <a href="@opt.Href" class="btn-secondary text-xs py-1.5 px-3 inline-block">
+                            [ Support the Library ]
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

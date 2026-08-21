@@ -1,0 +1,173 @@
+@page "/contact"
+@model NedumkandomPublicLibrary.Pages.ContactModel
+@{
+    ViewData["Title"] = "ഞങ്ങളെ ബന്ധപ്പെടാം | നെടുങ്കണ്ടം പബ്ലിക് ലൈബ്രറി";
+    var faqs = new[]
+    {
+        new {
+            Q = "ആർക്കെല്ലാം അംഗമാകാം?",
+            A = "നിലവിലുള്ള ലൈബ്രറി നിയമങ്ങൾക്ക് വിധേയമായി പ്രദേശത്തെ വായനക്കാർക്കും വിദ്യാർത്ഥികൾക്കും കുട്ടികൾക്കും പൊതുജനങ്ങൾക്കും അംഗത്വം നൽകാം. കേരളത്തിലെ പൊതുഗ്രന്ഥശാല നിയമപരമ്പരയിൽ അംഗത്വം പൊതുജനങ്ങൾക്ക് തുറന്നതായിരിക്കണമെന്ന വ്യവസ്ഥയും ഉണ്ട്. (E-LIS Repository)"
+        },
+        new {
+            Q = "അംഗത്വത്തിന് എന്തെല്ലാം രേഖകൾ വേണം?",
+            A = "ലൈബ്രറി നിശ്ചയിക്കുന്ന തിരിച്ചറിയൽ രേഖയും ആവശ്യമായ ഫോട്ടോയും നൽകണം. കൃത്യമായ രേഖകളുടെ പട്ടിക ഇവിടെ പ്രസിദ്ധീകരിക്കാം. കേരള സ്റ്റേറ്റ് സെൻട്രൽ ലൈബ്രറിയുടെ നിലവിലെ മാതൃകയിൽ ID proof, ഫോട്ടോ തുടങ്ങിയവ ആവശ്യപ്പെടുന്നുണ്ട്. (Kerala State Library)"
+        },
+        new {
+            Q = "ഒരു സമയം എത്ര പുസ്തകം എടുക്കാം?",
+            A = "അത് അംഗത്വ വിഭാഗവും ലൈബ്രറി നിയമങ്ങളും അനുസരിച്ചായിരിക്കും."
+        },
+        new {
+            Q = "പുസ്തകം നഷ്ടപ്പെട്ടാൽ?",
+            A = "ലൈബ്രറിയുടെ നിലവിലുള്ള നിയമപ്രകാരം പുസ്തകത്തിന്റെ വില/നഷ്ടപരിഹാരം ഈടാക്കാം."
+        },
+        new {
+            Q = "ഓൺലൈനായി പുസ്തകം തിരയാമോ?",
+            A = "അതെ — ലൈബ്രറിയുടെ OPAC/Online Catalogue ലഭ്യമാക്കിയാൽ വെബ്‌സൈറ്റിലൂടെ പുസ്തകങ്ങൾ തിരയാം."
+        },
+        new {
+            Q = "അംഗത്വം പുതുക്കാമോ?",
+            A = "നിലവിലുള്ള അംഗത്വ നിബന്ധനകൾ അനുസരിച്ച് renewal സൗകര്യം നൽകാം."
+        }
+    };
+}
+
+<div class="max-w-5xl mx-auto py-10 px-4 space-y-10">
+    <div class="text-center space-y-2 border-b border-slate-200 pb-6">
+        <h1 class="text-3xl font-bold text-slate-900">ഞങ്ങളെ ബന്ധപ്പെടാം</h1>
+        <p class="text-xs text-slate-600">@Model.Library.Name — വിലാസവും സന്ദേശ ഫോമും</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Info Column -->
+        <div class="space-y-6">
+            <div class="custom-card p-6 space-y-4">
+                <h2 class="text-lg font-bold text-[#0d5c46] border-b border-slate-100 pb-2">
+                    വിലാസം & വിവരങ്ങൾ
+                </h2>
+
+                <div class="space-y-3 text-xs text-slate-700">
+                    <div class="flex items-start gap-3">
+                        <span class="text-[#0d5c46] text-base shrink-0 mt-0.5">📍</span>
+                        <div>
+                            <div class="font-bold text-slate-900">വിലാസം:</div>
+                            <div>നെടുങ്കണ്ടം പി.ഒ, ഇടുക്കി ജില്ല, കേരളം - 685553</div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3">
+                        <span class="text-[#0d5c46] text-base shrink-0">📞</span>
+                        <div>
+                            <span class="font-bold text-slate-900">ഫോൺ: </span>
+                            <span>@Model.Library.Phone</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3">
+                        <span class="text-emerald-600 text-base shrink-0">💬</span>
+                        <div>
+                            <span class="font-bold text-slate-900">WhatsApp: </span>
+                            <span>+91 9446823434</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3">
+                        <span class="text-[#0d5c46] text-base shrink-0">✉️</span>
+                        <div>
+                            <span class="font-bold text-slate-900">Email: </span>
+                            <span>nedumkandomlibrary@gmail.com</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-2 border-t border-slate-100">
+                    <a href="https://maps.google.com/?q=Nedumkandom,Kerala" target="_blank" rel="noopener noreferrer" class="btn-secondary text-xs w-full text-center py-2 block">
+                        📍 [ വഴി കണ്ടെത്തുക - Google Maps ]
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Form Column -->
+        <div>
+            @if (Model.IsSubmitted)
+            {
+                <div class="custom-card p-8 text-center space-y-3 bg-emerald-50/50 border-emerald-200">
+                    <span class="text-3xl text-[#0d5c46] mx-auto block">✓</span>
+                    <h3 class="text-lg font-bold text-[#0d5c46]">സന്ദേശം അയച്ചു!</h3>
+                    <p class="text-xs text-slate-600">@Model.SuccessMessage</p>
+                    <div class="text-xs font-mono font-bold text-slate-700">Ref: @Model.ReferenceId</div>
+                    <div class="pt-3">
+                        <a href="/contact" class="btn-secondary text-xs py-1.5 px-4">മറ്റൊരു സന്ദേശം അയയ്ക്കുക</a>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <form method="post" class="custom-card p-6 md:p-8 space-y-4">
+                    @Html.AntiForgeryToken()
+                    <h2 class="text-base font-bold text-[#0d5c46] border-b border-slate-100 pb-2">
+                        [ ഞങ്ങൾക്ക് സന്ദേശം അയയ്ക്കുക ]
+                    </h2>
+
+                    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+                    {
+                        <div class="p-3 bg-red-50 border border-red-200 rounded text-xs text-red-700">
+                            @Model.ErrorMessage
+                        </div>
+                    }
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">പേര് *</label>
+                        <input type="text" asp-for="Form.Name" required placeholder="നിങ്ങളുടെ പേര്" class="w-full px-3 py-2 text-sm border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0d5c46]" />
+                        <span asp-validation-for="Form.Name" class="text-xs text-red-600"></span>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">മൊബൈൽ നമ്പർ *</label>
+                            <input type="tel" asp-for="Form.Mobile" required placeholder="10 അക്ക മൊബൈൽ" class="w-full px-3 py-2 text-sm border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0d5c46]" />
+                            <span asp-validation-for="Form.Mobile" class="text-xs text-red-600"></span>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Email</label>
+                            <input type="email" asp-for="Form.Email" placeholder="email@example.com" class="w-full px-3 py-2 text-sm border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0d5c46]" />
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">വിഷയം</label>
+                        <input type="text" asp-for="Form.Subject" placeholder="സന്ദേശത്തിന്റെ വിഷയം" class="w-full px-3 py-2 text-sm border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0d5c46]" />
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">സന്ദേശം</label>
+                        <textarea rows="4" asp-for="Form.Message" placeholder="നിങ്ങളുടെ സന്ദേശം ടൈപ്പ് ചെയ്യുക..." class="w-full px-3 py-2 text-sm border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0d5c46]"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary w-full text-xs py-2.5">
+                        [ സന്ദേശം അയയ്ക്കുക ]
+                    </button>
+                </form>
+            }
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="space-y-4 pt-6 border-t border-slate-200">
+        <div class="flex items-center gap-2 text-lg font-bold text-slate-900">
+            <span class="text-[#0d5c46]">❓</span>
+            <h2>പതിവായി ചോദിക്കുന്ന ചോദ്യങ്ങൾ (FAQ)</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            @foreach (var faq in faqs)
+            {
+                <div class="custom-card p-5 space-y-2">
+                    <h3 class="font-bold text-xs sm:text-sm text-[#0d5c46]">@faq.Q</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">@faq.A</p>
+                </div>
+            }
+        </div>
+    </div>
+</div>

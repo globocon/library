@@ -1,0 +1,132 @@
+@page "/membership"
+@{
+    ViewData["Title"] = "ഗ്രന്ഥശാലയിലെ അംഗത്വം | നെടുങ്കണ്ടം പബ്ലിക് ലൈബ്രറി";
+    var eligibleCategories = new[]
+    {
+        "കുട്ടികൾ", "വിദ്യാർത്ഥികൾ", "യുവാക്കൾ", "മുതിർന്നവർ", 
+        "അധ്യാപകർ", "സർക്കാർ / സ്വകാര്യ ജീവനക്കാർ", "വിരമിച്ചവർ", 
+        "വീട്ടമ്മമാർ", "മുതിർന്ന പൗരന്മാർ", "പുസ്തകവായനയിൽ താല്പര്യമുള്ള എല്ലാവരും"
+    };
+
+    var processSteps = new[]
+    {
+        new { Step = 1, Title = "അപേക്ഷ സമർപ്പിക്കുക", Desc = "ഓൺലൈനായി ലളിതമായി അപേക്ഷ പൂരിപ്പിച്ച് സമർപ്പിക്കുക." },
+        new { Step = 2, Title = "ലൈബ്രറി അധികൃതർ പരിശോധിക്കും", Desc = "നൽകിയ രേഖകളും വിവരങ്ങളും പരിശോധിക്കും." },
+        new { Step = 3, Title = "അംഗത്വം അംഗീകരിക്കും", Desc = "ഗ്രന്ഥശാല ഭരണസമിതി അംഗത്വം അംഗീകരിക്കും." },
+        new { Step = 4, Title = "ഫീസ് അടയ്ക്കുക", Desc = "നിശ്ചിത പ്രവേശന ഫീസും ഡെപ്പോസിറ്റും അടയ്ക്കുക." },
+        new { Step = 5, Title = "Membership ID ലഭിക്കും", Desc = "അംഗത്വ നമ്പറും ഐഡി കാർഡും കൈപ്പറ്റാം." },
+        new { Step = 6, Title = "പുസ്തകങ്ങൾ എടുക്കാം", Desc = "പുസ്തകങ്ങൾ സ്വീകരിച്ച് വായന ആരംഭിക്കാം." },
+    };
+
+    var feeRows = new[]
+    {
+        new { Category = "കുട്ടികൾ", Admission = "—", Deposit = "—", Books = "—" },
+        new { Category = "വിദ്യാർത്ഥികൾ", Admission = "—", Deposit = "—", Books = "—" },
+        new { Category = "പൊതുഅംഗത്വം", Admission = "—", Deposit = "—", Books = "—" },
+        new { Category = "കുടുംബ അംഗത്വം", Admission = "—", Deposit = "—", Books = "—" },
+        new { Category = "മുതിർന്ന പൗരന്മാർ", Admission = "—", Deposit = "—", Books = "—" },
+    };
+}
+
+<div class="max-w-4xl mx-auto py-10 px-4 space-y-10">
+    <!-- Title with Prominent CTA -->
+    <div class="text-center space-y-4 border-b border-slate-200 pb-8">
+        <h1 class="text-3xl font-bold text-slate-900">ഗ്രന്ഥശാലയിലെ അംഗത്വം</h1>
+        <p class="text-xs text-slate-600 max-w-xl mx-auto">
+            നെടുങ്കണ്ടം പബ്ലിക് ലൈബ്രറിയിലെ അംഗത്വം എല്ലാവർക്കും ലഭ്യമാക്കുക എന്നതാണ് ലക്ഷ്യം.
+        </p>
+
+        <!-- Primary CTA -->
+        <div class="pt-2">
+            <a href="/membership-apply" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-sm py-3 px-6 rounded-xl shadow-md hover:shadow-lg transition-all inline-flex items-center gap-2">
+                <span>➕</span>
+                <span>അംഗത്വത്തിന് അപേക്ഷിക്കുക</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Eligible Categories -->
+    <div class="custom-card p-6 space-y-4">
+        <div class="flex items-center gap-2 border-b border-slate-100 pb-2">
+            <span class="text-[#0d5c46] font-bold">👥</span>
+            <h2 class="text-base font-bold text-slate-900">അംഗത്വത്തിന് അർഹരായവർ</h2>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2.5">
+            @foreach (var item in eligibleCategories)
+            {
+                <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-200 text-center text-xs font-semibold text-slate-800">
+                    @item
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- 6-Step Process Flowchart -->
+    <div class="space-y-4">
+        <h2 class="text-base font-bold text-slate-900 border-b border-slate-200 pb-2">
+            അംഗത്വ നടപടിക്രമം
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            @foreach (var s in processSteps)
+            {
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-xs relative border-l-4 border-l-[#0d5c46] space-y-1">
+                    <div class="text-xs font-bold text-[#0d5c46] uppercase tracking-wider">
+                        Step @s.Step
+                    </div>
+                    <div class="font-bold text-sm text-slate-900">@s.Title</div>
+                    <div class="text-xs text-slate-600 leading-relaxed">@s.Desc</div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- Fee Table -->
+    <div class="custom-card p-6 space-y-4">
+        <h2 class="text-base font-bold text-slate-900 border-b border-slate-100 pb-2">
+            അംഗത്വ ഫീസ് വിവരങ്ങൾ
+        </h2>
+
+        <div class="overflow-x-auto">
+            <table class="w-full text-xs text-left border-collapse border border-slate-200">
+                <thead>
+                    <tr class="bg-slate-100 text-slate-800 font-bold border-b border-slate-200">
+                        <th class="p-3 border border-slate-200">അംഗത്വം</th>
+                        <th class="p-3 border border-slate-200">പ്രവേശന ഫീസ്</th>
+                        <th class="p-3 border border-slate-200">ഡെപ്പോസിറ്റ്</th>
+                        <th class="p-3 border border-slate-200">ഒരേസമയം എടുക്കാവുന്ന പുസ്തകങ്ങൾ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var row in feeRows)
+                    {
+                        <tr class="hover:bg-slate-50 border-b border-slate-200">
+                            <td class="p-3 font-semibold text-slate-800 border border-slate-200">@row.Category</td>
+                            <td class="p-3 border border-slate-200">₹ @row.Admission</td>
+                            <td class="p-3 border border-slate-200">₹ @row.Deposit</td>
+                            <td class="p-3 border border-slate-200">@row.Books</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="flex items-start gap-2 bg-amber-50 p-3 rounded-lg border border-amber-200 text-xs text-amber-900">
+            <span class="text-amber-700 shrink-0 mt-0.5">ℹ️</span>
+            <span>ഫീസ് വിവരങ്ങൾ ലൈബ്രറി ഭരണസമിതിയുടെ തീരുമാനപ്രകാരം കൃത്യമായി നിശ്ചയിക്കാവുന്നതാണ്.</span>
+        </div>
+    </div>
+
+    <!-- Bottom CTA Card -->
+    <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-6 text-center space-y-3">
+        <h3 class="text-lg font-bold text-[#0d5c46]">
+            ഇന്ന് തന്നെ ഗ്രന്ഥശാലയിൽ അംഗമാകൂ!
+        </h3>
+        <p class="text-xs text-slate-700 max-w-lg mx-auto">
+            ഓൺലൈൻ അപേക്ഷ സമർപ്പിച്ച ശേഷം ലൈബ്രറി അധികൃതർ പരിശോധന പൂർത്തിയാക്കി നിങ്ങളെ അറിയിക്കും.
+        </p>
+        <a href="/membership-apply" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs py-2.5 px-6 rounded-lg inline-flex items-center gap-2 shadow-sm">
+            <span>➕</span>
+            <span>അംഗത്വത്തിന് അപേക്ഷിക്കുക</span>
+        </a>
+    </div>
+</div>

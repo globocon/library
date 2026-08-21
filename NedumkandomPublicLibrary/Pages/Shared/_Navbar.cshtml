@@ -1,0 +1,43 @@
+@using Microsoft.Extensions.Options
+@using NedumkandomPublicLibrary.Options
+@inject IOptions<LibraryOptions> LibraryOptions
+
+@{
+    var lib = LibraryOptions.Value;
+}
+
+<header class="navbar-header">
+    <div class="navbar-container">
+        <div class="navbar-row">
+            
+            <!-- Brand Logo & Name (Clicking goes to Home) -->
+            <a href="/#home-section" class="navbar-brand-btn" aria-label="ഹോം പേജിലേക്ക്">
+                <div class="navbar-logo-badge">
+                    <img src="~/images/logo.png" alt="ലോഗോ" width="48" height="48" class="navbar-logo-img" />
+                </div>
+                <div class="navbar-brand-text">
+                    <span class="navbar-title">
+                        @lib.Name
+                    </span>
+                    <span class="navbar-subtitle">
+                        @lib.Location
+                    </span>
+                </div>
+            </a>
+
+            <!-- Navigation Controls -->
+            <div class="navbar-actions">
+                <!-- Desktop / Tablet 'Home' button -->
+                <a href="/#home-section" class="navbar-home-link">
+                    ഹോം
+                </a>
+
+                <!-- Primary Action Button (Always visible & fully fitting on all devices) -->
+                <a href="/#apply-form" class="navbar-cta-btn">
+                    അപേക്ഷാ ഫോം
+                </a>
+            </div>
+
+        </div>
+    </div>
+</header>

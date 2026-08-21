@@ -1,0 +1,361 @@
+@model NedumkandomPublicLibrary.Pages.MembershipPageBase
+
+@if (Model.IsSubmitted)
+{
+    <!-- SUCCESS CONFIRMATION CONTAINER -->
+    <div class="success-card" id="applicationSuccessCard">
+        <div class="success-icon-badge">
+            <svg class="success-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+        </div>
+
+        <div class="space-y-3">
+            <h3 class="success-heading">
+                അപേക്ഷ വിജയകരമായി സമർപ്പിച്ചു.
+            </h3>
+            
+            <div class="success-ref-box">
+                <div class="success-ref-label">
+                    താങ്കളുടെ അപേക്ഷാ നമ്പർ:
+                </div>
+                <div class="success-ref-code">
+                    @Model.ReferenceId
+                </div>
+            </div>
+
+            <p class="success-message">
+                അപേക്ഷ ലൈബ്രറിയിൽ ലഭിച്ചിട്ടുണ്ട്. ലൈബ്രറി അധികൃതർ പരിശോധിച്ച് തുടർനടപടികൾ സ്വീകരിക്കുന്നതാണ്.
+            </p>
+
+            <p class="success-thankyou">
+                നന്ദി.
+            </p>
+        </div>
+
+        <div class="pt-2">
+            <a href="@(ViewContext.HttpContext.Request.Path == "/membership-apply" ? "/membership-apply" : "/#apply-form")" class="btn-reset">
+                <span>മറ്റൊരു അപേക്ഷ സമർപ്പിക്കുക</span>
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"/>
+                    <polyline points="12 5 19 12 12 19"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+}
+else
+{
+    <!-- ONE VISUAL CONTAINER APPLICATION FORM -->
+    <div class="form-container-card">
+        
+        <!-- Header -->
+        <div class="form-header-box">
+            <h2 class="form-title">
+                അംഗത്വ അപേക്ഷാ ഫോം
+            </h2>
+            <p class="form-subtitle">
+                ദയവായി താഴെ പറയുന്ന വിവരങ്ങൾ പൂരിപ്പിച്ച് സമർപ്പിക്കുക. (* അടയാളപ്പെടുത്തിയവ നിർബന്ധമാണ്)
+            </p>
+        </div>
+
+        <!-- General Error Notice -->
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="general-error-box">
+                <svg class="error-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="8" x2="12" y2="12"/>
+                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                </svg>
+                <span>@Model.ErrorMessage</span>
+            </div>
+        }
+
+        <!-- Form Fields Container -->
+        <form method="post" action="@(ViewContext.HttpContext.Request.Path == "/membership-apply" ? "/membership-apply" : "/#apply-form")" asp-antiforgery="true" id="membershipForm" class="form-element" noValidate>
+
+            <!-- 1. പേര് * -->
+            <div class="form-field-group">
+                <label asp-for="Form.Name" class="form-label">
+                    1. പേര് *
+                </label>
+                <input asp-for="Form.Name"
+                       type="text"
+                       placeholder="പൂർണ്ണ പേര് നൽകുക"
+                       class="form-input-box @(ViewData.ModelState["Form.Name"]?.Errors.Count > 0 ? "input-error" : "")"
+                       required />
+                <span asp-validation-for="Form.Name" class="field-error-text"></span>
+            </div>
+
+            <!-- 2. മൊബൈൽ നമ്പർ * -->
+            <div class="form-field-group">
+                <label asp-for="Form.Mobile" class="form-label">
+                    2. മൊബൈൽ നമ്പർ *
+                </label>
+                <input asp-for="Form.Mobile"
+                       type="tel"
+                       placeholder="10 അക്ക മൊബൈൽ നമ്പർ"
+                       class="form-input-box @(ViewData.ModelState["Form.Mobile"]?.Errors.Count > 0 ? "input-error" : "")"
+                       required />
+                <span asp-validation-for="Form.Mobile" class="field-error-text"></span>
+            </div>
+
+            <!-- 3. ലിംഗം -->
+            <div class="form-field-group">
+                <label class="form-label">
+                    3. ലിംഗം
+                </label>
+                <div class="gender-radio-grid">
+                    @foreach (var opt in new[] { "പുരുഷൻ", "സ്ത്രീ", "മറ്റുള്ളവ" })
+                    {
+                        <label class="radio-card min-h-52 @(Model.Form.Gender == opt ? "active" : "")">
+                            <input type="radio" asp-for="Form.Gender" value="@opt" />
+                            <span>@opt</span>
+                        </label>
+                    }
+                </div>
+            </div>
+
+            <!-- 4. പൂർണ്ണ വിലാസം * -->
+            <div class="form-field-group">
+                <label asp-for="Form.Address" class="form-label">
+                    4. പൂർണ്ണ വിലാസം *
+                </label>
+                <textarea asp-for="Form.Address"
+                          rows="3"
+                          placeholder="വീട്ടുപേര്, സ്ഥലം..."
+                          class="form-input-box @(ViewData.ModelState["Form.Address"]?.Errors.Count > 0 ? "input-error" : "")"
+                          required></textarea>
+                <span asp-validation-for="Form.Address" class="field-error-text"></span>
+            </div>
+
+            <!-- 5. പഞ്ചായത്ത് / മുനിസിപ്പാലിറ്റി * & 6. വാർഡ് * (Aligned Baselines) -->
+            <div class="two-col-grid">
+                <div class="flex-col-wrapper">
+                    <div class="label-wrapper-tall">
+                        <label asp-for="Form.Panchayat" class="form-label-snug">
+                            5. പഞ്ചായത്ത് / മുനിസിപ്പാലിറ്റി *
+                        </label>
+                    </div>
+                    <input asp-for="Form.Panchayat"
+                           type="text"
+                           placeholder="ഉദാ: നെടുങ്കണ്ടം"
+                           class="form-input-box @(ViewData.ModelState["Form.Panchayat"]?.Errors.Count > 0 ? "input-error" : "")"
+                           required />
+                    <span asp-validation-for="Form.Panchayat" class="field-error-text"></span>
+                </div>
+
+                <div class="flex-col-wrapper">
+                    <div class="label-wrapper-tall">
+                        <label asp-for="Form.Ward" class="form-label-snug">
+                            6. വാർഡ് *
+                        </label>
+                    </div>
+                    <input asp-for="Form.Ward"
+                           type="text"
+                           placeholder="വാർഡ് നമ്പർ / പേര്"
+                           class="form-input-box @(ViewData.ModelState["Form.Ward"]?.Errors.Count > 0 ? "input-error" : "")"
+                           required />
+                    <span asp-validation-for="Form.Ward" class="field-error-text"></span>
+                </div>
+            </div>
+
+            <!-- 7. പിൻകോഡ് & 8. ഇ-മെയിൽ (Aligned Baselines) -->
+            <div class="two-col-grid">
+                <div class="flex-col-wrapper">
+                    <div class="label-wrapper-short">
+                        <label asp-for="Form.Pincode" class="form-label-snug">
+                            7. പിൻകോഡ്
+                        </label>
+                    </div>
+                    <input asp-for="Form.Pincode"
+                           type="text"
+                           placeholder="685553"
+                           class="form-input-box" />
+                </div>
+
+                <div class="flex-col-wrapper">
+                    <div class="label-wrapper-short">
+                        <label asp-for="Form.Email" class="form-label-snug">
+                            8. ഇ-മെയിൽ
+                        </label>
+                    </div>
+                    <input asp-for="Form.Email"
+                           type="email"
+                           placeholder="email@example.com"
+                           class="form-input-box @(ViewData.ModelState["Form.Email"]?.Errors.Count > 0 ? "input-error" : "")" />
+                    <span asp-validation-for="Form.Email" class="field-error-text"></span>
+                </div>
+            </div>
+
+            <!-- 9. അംഗത്വ വിഭാഗം (Uniform Height & Aligned Radio Grid) -->
+            <div class="form-field-group">
+                <label class="form-label">
+                    9. അംഗത്വ വിഭാഗം
+                </label>
+                <div class="category-radio-grid">
+                    @foreach (var cat in new[] { "കുട്ടി", "വിദ്യാർത്ഥി", "പൊതുവിഭാഗം", "കുടുംബ അംഗത്വം", "മുതിർന്ന പൗരൻ", "മറ്റ്" })
+                    {
+                        <label class="radio-card category-card @(Model.Form.Category == cat ? "active" : "")">
+                            <input type="radio" asp-for="Form.Category" value="@cat" class="shrink-0" />
+                            <span class="leading-snug">@cat</span>
+                        </label>
+                    }
+                </div>
+            </div>
+
+            <!-- ===================================================================
+                രക്ഷകർത്താവിന്റെ വിവരങ്ങൾ (കുട്ടി / മൈനർ ആണെങ്കിൽ മാത്രം കാണിക്കുന്നത്)
+                =================================================================== -->
+            <div id="guardianSection" class="guardian-container @(Model.Form.Category == "കുട്ടി" ? "" : "hidden")">
+                <div class="guardian-header">
+                    <h3 class="guardian-title">
+                        രക്ഷകർത്താവിന്റെ വിവരങ്ങൾ (മൈനർ ആണെങ്കിൽ)
+                    </h3>
+                    <p class="guardian-subtitle">
+                        * കുട്ടി വിഭാഗം തെരഞ്ഞെടുത്തതിനാൽ രക്ഷകർത്താവിന്റെ വിവരങ്ങൾ നൽകുക:
+                    </p>
+                </div>
+
+                <div class="two-col-grid">
+                    <!-- രക്ഷകർത്താവിന്റെ പേര് -->
+                    <div class="flex-col-wrapper">
+                        <div class="label-wrapper-guardian">
+                            <label asp-for="Form.GuardianName" class="font-bold text-slate-900 leading-snug">
+                                രക്ഷകർത്താവിന്റെ പേര് *
+                            </label>
+                        </div>
+                        <input asp-for="Form.GuardianName"
+                               type="text"
+                               id="guardianNameInput"
+                               placeholder="രക്ഷകർത്താവിന്റെ പൂർണ്ണ പേര്"
+                               class="form-input-box @(ViewData.ModelState["Form.GuardianName"]?.Errors.Count > 0 ? "input-error" : "")" />
+                        <span asp-validation-for="Form.GuardianName" class="field-error-text"></span>
+                    </div>
+
+                    <!-- ബന്ധം -->
+                    <div class="flex-col-wrapper">
+                        <div class="label-wrapper-guardian">
+                            <label asp-for="Form.GuardianRelation" class="font-bold text-slate-900 leading-snug">
+                                ബന്ധം (അച്ഛൻ / അമ്മ / രക്ഷിതാവ്)
+                            </label>
+                        </div>
+                        <input asp-for="Form.GuardianRelation"
+                               type="text"
+                               placeholder="ഉദാ: അച്ഛൻ / അമ്മ / രക്ഷിതാവ്"
+                               class="form-input-box" />
+                    </div>
+
+                    <!-- രക്ഷകർത്താവിന്റെ ഫോൺ -->
+                    <div class="guardian-full-width">
+                        <label asp-for="Form.GuardianPhone" class="form-label-small">
+                            രക്ഷകർത്താവിന്റെ മൊബൈൽ / ഫോൺ നമ്പർ (ഓപ്ഷണൽ)
+                        </label>
+                        <input asp-for="Form.GuardianPhone"
+                               type="tel"
+                               placeholder="10 അക്ക മൊബൈൽ നമ്പർ"
+                               class="form-input-box" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===================================================================
+                അപേക്ഷയോടൊപ്പം അടച്ച തുക (3 Manual Payment Fields)
+                =================================================================== -->
+            <div class="payment-container">
+                <div class="payment-header">
+                    <h3 class="payment-title">
+                        അപേക്ഷയോടൊപ്പം അടച്ച തുക
+                    </h3>
+                    <p class="payment-subtitle">
+                        അപേക്ഷയോടൊപ്പം തുക അടച്ചിട്ടുണ്ടെങ്കിൽ താഴെ നൽകുക (ഓപ്ഷണൽ):
+                    </p>
+                </div>
+
+                <div class="three-col-grid">
+                    
+                    <!-- അംഗത്വ ഫീസ് -->
+                    <div class="flex-col-wrapper">
+                        <div class="payment-label-wrapper">
+                            <label asp-for="Form.AdmissionFee" class="payment-field-label">
+                                അംഗത്വ ഫീസ്
+                            </label>
+                        </div>
+                        <div class="currency-input-wrapper">
+                            <div class="currency-symbol">₹</div>
+                            <input asp-for="Form.AdmissionFee"
+                                   type="number"
+                                   placeholder="0"
+                                   min="0"
+                                   step="1"
+                                   class="currency-input-box" />
+                        </div>
+                    </div>
+
+                    <!-- ജാമ്യ നിക്ഷേപം -->
+                    <div class="flex-col-wrapper">
+                        <div class="payment-label-wrapper">
+                            <label asp-for="Form.Deposit" class="payment-field-label">
+                                ജാമ്യ നിക്ഷേപം
+                            </label>
+                        </div>
+                        <div class="currency-input-wrapper">
+                            <div class="currency-symbol">₹</div>
+                            <input asp-for="Form.Deposit"
+                                   type="number"
+                                   placeholder="0"
+                                   min="0"
+                                   step="1"
+                                   class="currency-input-box" />
+                        </div>
+                    </div>
+
+                    <!-- മാസവരി -->
+                    <div class="flex-col-wrapper">
+                        <div class="payment-label-wrapper">
+                            <label asp-for="Form.MonthlyFee" class="payment-field-label">
+                                മാസവരി
+                            </label>
+                        </div>
+                        <div class="currency-input-wrapper">
+                            <div class="currency-symbol">₹</div>
+                            <input asp-for="Form.MonthlyFee"
+                                   type="number"
+                                   placeholder="0"
+                                   min="0"
+                                   step="1"
+                                   class="currency-input-box" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Final Submit Action -->
+            <div class="submit-action-wrapper">
+                <button type="submit" id="btnSubmit" class="btn-submit">
+                    <span id="btnSubmitText" class="inline-flex items-center gap-2">
+                        <svg class="w-5 h-5 text-amber" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                            <line x1="10" y1="9" x2="8" y2="9"/>
+                        </svg>
+                        <span>അപേക്ഷ സമർപ്പിക്കുക</span>
+                    </span>
+                    <span id="btnSubmitLoading" class="hidden inline-flex items-center gap-2">
+                        <svg class="w-5 h-5 animate-spin text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                        </svg>
+                        <span>അപേക്ഷ സമർപ്പിക്കുന്നു...</span>
+                    </span>
+                </button>
+            </div>
+
+        </form>
+    </div>
+}

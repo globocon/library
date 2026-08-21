@@ -1,0 +1,37 @@
+@page "/students"
+@{
+    ViewData["Title"] = "വിദ്യാർത്ഥികൾക്കായി | നെടുങ്കണ്ടം പബ്ലിക് ലൈബ്രറി";
+    var services = new[]
+    {
+        new { Title = "Reference Books", Desc = "പഠനത്തിനും ഗവേഷണത്തിനുമുള്ള റഫറൻസ് ഗ്രന്ഥങ്ങൾ" },
+        new { Title = "General Knowledge", Desc = "പൊതുവിജ്ഞാന പുസ്തകങ്ങളും ഗൈഡുകളും" },
+        new { Title = "Current Affairs", Desc = "തത്സമയ വിവരങ്ങളും മാസികകളും" },
+        new { Title = "Competitive Examination Books", Desc = "PSC, UPSC, SSC, Bank പരീക്ഷാ പുസ്തകങ്ങൾ" },
+        new { Title = "Career Guidance", Desc = "തൊഴിൽ മാർഗ്ഗനിർദ്ദേശങ്ങൾ" },
+        new { Title = "Study Materials", Desc = "പഠന സഹായികളും നോട്ട്സുകളും" },
+        new { Title = "Quiet Reading Area", Desc = "പഠനത്തിനായി ശാന്തമായ വായനാമുറി" }
+    };
+}
+
+<div class="max-w-4xl mx-auto py-10 px-4 space-y-8">
+    <div class="bg-blue-50 border border-blue-200 rounded-xl p-6 text-center space-y-2">
+        <span class="text-3xl text-blue-700 mx-auto block">🎓</span>
+        <h1 class="text-3xl font-bold text-blue-950">വിദ്യാർത്ഥികൾക്കായി</h1>
+        <p class="text-xs text-blue-800">
+            പഠനത്തിനും മത്സരപ്പരീക്ഷകൾക്കും ആവശ്യമായ പുസ്തകങ്ങളും റഫറൻസ് സൗകര്യങ്ങളും.
+        </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        @foreach (var item in services)
+        {
+            <div class="custom-card p-5 flex items-start gap-3">
+                <span class="text-blue-600 font-bold shrink-0 mt-0.5">✓</span>
+                <div>
+                    <h3 class="font-bold text-sm text-slate-900">@item.Title</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed mt-0.5">@item.Desc</p>
+                </div>
+            </div>
+        }
+    </div>
+</div>

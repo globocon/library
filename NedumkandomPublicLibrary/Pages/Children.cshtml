@@ -1,0 +1,66 @@
+@page "/children"
+@{
+    ViewData["Title"] = "കുട്ടികളുടെ വായനാകേന്ദ്രം | നെടുങ്കണ്ടം പബ്ലിക് ലൈബ്രറി";
+    var categories = new[]
+    {
+        "കുട്ടികളുടെ കഥാപുസ്തകങ്ങൾ",
+        "ചിത്രകഥകൾ",
+        "ബാലസാഹിത്യം",
+        "വിജ്ഞാന പുസ്തകങ്ങൾ",
+        "ശാസ്ത്ര പുസ്തകങ്ങൾ",
+        "പ്രവർത്തന പുസ്തകങ്ങൾ",
+        "കുട്ടികളുടെ വായനാ മത്സരങ്ങൾ"
+    };
+
+    var activities = new[]
+    {
+        new { Title = "ചിത്രരചന", Icon = "🎨" },
+        new { Title = "കഥപറച്ചിൽ", Icon = "🎙️" },
+        new { Title = "വായനാ മത്സരം", Icon = "📖" },
+        new { Title = "എഴുത്ത് മത്സരം", Icon = "✍️" },
+        new { Title = "ക്വിസ് (Quiz)", Icon = "❓" },
+        new { Title = "നാടകം", Icon = "🏆" },
+        new { Title = "പ്രസംഗ മത്സരം", Icon = "🎤" },
+    };
+}
+
+<div class="max-w-4xl mx-auto py-10 px-4 space-y-10">
+    <div class="bg-pink-50 border border-pink-200 rounded-xl p-6 text-center space-y-2">
+        <span class="text-3xl text-pink-600 mx-auto block">😊</span>
+        <h1 class="text-3xl font-bold text-pink-950">കുട്ടികളുടെ വായനാകേന്ദ്രം</h1>
+        <p class="text-xs text-pink-800">
+            കുട്ടികളിൽ ചെറുപ്പം മുതൽ വായനാശീലം വളർത്തുന്നതിനായി പ്രത്യേക വായനാലോകം.
+        </p>
+    </div>
+
+    <div class="space-y-4">
+        <h2 class="text-lg font-bold text-slate-900 border-b border-slate-200 pb-2">
+            ബാലസാഹിത്യ ശേഖരങ്ങൾ
+        </h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            @foreach (var cat in categories)
+            {
+                <div class="custom-card p-3.5 text-center text-xs font-semibold text-slate-800 bg-slate-50">
+                    @cat
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="space-y-4">
+        <h2 class="text-lg font-bold text-slate-900 border-b border-slate-200 pb-2">
+            കുട്ടികൾക്കായുള്ള പരിപാടികൾ
+        </h2>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            @foreach (var act in activities)
+            {
+                <div class="custom-card p-4 text-center space-y-2 hover:border-pink-300">
+                    <div class="w-10 h-10 rounded-full bg-pink-100 text-pink-700 flex items-center justify-center mx-auto text-base">
+                        @act.Icon
+                    </div>
+                    <div class="text-xs font-bold text-slate-800">@act.Title</div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,90 @@
+@page "/books"
+@{
+    ViewData["Title"] = "ഞങ്ങളുടെ പുസ്തക ശേഖരം | നെടുങ്കണ്ടം പബ്ലിക് ലൈബ്രറി";
+    var malayalamCategories = new[]
+    {
+        "നോവൽ", "ചെറുകഥ", "കവിത", "ജീവചരിത്രം", "ആത്മകഥ", 
+        "ചരിത്രം", "യാത്രാവിവരണം", "ശാസ്ത്രം", "പൊതുവിജ്ഞാനം", 
+        "ആരോഗ്യം", "കൃഷി", "മതം & തത്വചിന്ത", "കുട്ടികളുടെ സാഹിത്യം"
+    };
+
+    var englishCategories = new[]
+    {
+        "Fiction", "Non-fiction", "Biography", "History", 
+        "Science", "Reference", "Children’s Books"
+    };
+
+    var specialCollections = new[]
+    {
+        new { Title = "കുട്ടികളുടെ കോർണർ", Desc = "കഥകളും ചിത്രകഥകളും ബാലസാഹിത്യവും", Href = "/children" },
+        new { Title = "യുവജന വിഭാഗം", Desc = "യുവ വായനക്കാർക്കായുള്ള പുസ്തകങ്ങൾ", Href = "/students" },
+        new { Title = "മത്സരപ്പരീക്ഷാ വിഭാഗം", Desc = "PSC, UPSC, Bank ട്രാക്കിംഗ് പഠന പുസ്തകങ്ങൾ", Href = "/students" },
+        new { Title = "റഫറൻസ് വിഭാഗം", Desc = "ഡിക്ഷണറികൾ, എൻസൈക്ലോപീഡിയകൾ", Href = "/books" },
+        new { Title = "പത്ര-ആനുകാലിക വിഭാഗം", Desc = "ദിനപത്രങ്ങളും വാരികകളും മാസികകളും", Href = "/periodicals" },
+        new { Title = "ഡിജിറ്റൽ വിഭവങ്ങൾ", Desc = "ഇ-ബുക്കുകളും ഓൺലൈൻ വിഭവങ്ങളും", Href = "/digital-library" },
+    };
+}
+
+<div class="max-w-5xl mx-auto py-10 px-4 space-y-10">
+    <!-- Title Header -->
+    <div class="text-center space-y-3 border-b border-slate-200 pb-6">
+        <h1 class="text-3xl font-bold text-slate-900">ഞങ്ങളുടെ പുസ്തക ശേഖരം</h1>
+        <p class="text-xs text-slate-600">ഗ്രന്ഥശാലയിൽ വിവിധ വിഭാഗങ്ങളിലായി നിരവധി പുസ്തകങ്ങളും പ്രസിദ്ധീകരണങ്ങളും ലഭ്യമാണ്.</p>
+        <div class="pt-2">
+            <a href="/search" class="btn-primary text-xs inline-flex items-center gap-2">
+                <span>🔍</span>
+                <span>ഓൺലൈനായി പുസ്തകം തിരയാം</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Malayalam Categories -->
+    <div class="space-y-4">
+        <div class="flex items-center gap-2 border-b border-slate-200 pb-2">
+            <span class="text-[#0d5c46] text-lg">📖</span>
+            <h2 class="text-lg font-bold text-slate-900">മലയാളം പുസ്തക വിഭാഗങ്ങൾ</h2>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+            @foreach (var cat in malayalamCategories)
+            {
+                <div class="custom-card p-3.5 flex items-center gap-2.5">
+                    <span class="text-emerald-600 font-bold shrink-0">🔖</span>
+                    <span class="text-xs font-semibold text-slate-800">@cat</span>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- English Categories -->
+    <div class="space-y-4">
+        <div class="flex items-center gap-2 border-b border-slate-200 pb-2">
+            <span class="text-[#0d5c46] text-lg">📖</span>
+            <h2 class="text-lg font-bold text-slate-900">ഇംഗ്ലീഷ് പുസ്തക വിഭാഗങ്ങൾ</h2>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+            @foreach (var cat in englishCategories)
+            {
+                <div class="custom-card p-3.5 flex items-center gap-2.5 bg-slate-50">
+                    <span class="text-amber-600 font-bold shrink-0">🔖</span>
+                    <span class="text-xs font-semibold text-slate-800">@cat</span>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- Special Collections -->
+    <div class="space-y-4">
+        <h2 class="text-lg font-bold text-slate-900 border-b border-slate-200 pb-2">
+            പ്രത്യേക ശേഖരങ്ങൾ
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            @foreach (var sc in specialCollections)
+            {
+                <a href="@sc.Href" class="custom-card p-5 block hover:border-[#0d5c46] transition-colors">
+                    <div class="font-bold text-sm text-[#0d5c46] mb-1">@sc.Title</div>
+                    <div class="text-xs text-slate-600">@sc.Desc</div>
+                </a>
+            }
+        </div>
+    </div>
+</div>

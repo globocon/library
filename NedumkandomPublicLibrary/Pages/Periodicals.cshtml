@@ -1,0 +1,40 @@
+@page "/periodicals"
+@{
+    ViewData["Title"] = "പത്രങ്ങളും ആനുകാലിക പ്രസിദ്ധീകരണങ്ങളും | നെടുങ്കണ്ടം പബ്ലിക് ലൈബ്രറി";
+    var sections = new[]
+    {
+        new { Title = "മലയാളം ദിനപത്രങ്ങൾ", Icon = "📰", Desc = "പ്രധാന മലയാളം ദിനപത്രങ്ങൾ ദിവസേന ലഭ്യമാണ്." },
+        new { Title = "ഇംഗ്ലീഷ് ദിനപത്രങ്ങൾ", Icon = "📰", Desc = "ദേശീയ ഇംഗ്ലീഷ് ദിനപത്രങ്ങൾ വായിക്കാം." },
+        new { Title = "വാരികകൾ", Icon = "📖", Desc = "വാരാന്ത്യ സാംസ്കാരിക-സാഹിത്യ വാരികകൾ." },
+        new { Title = "മാസികകൾ", Icon = "📑", Desc = "വിദ്യാഭ്യാസ, സാഹിത്യ, ശാസ്ത്ര, പൊതുവിജ്ഞാന മാസികകൾ." },
+        new { Title = "പ്രത്യേക പ്രസിദ്ധീകരണങ്ങൾ", Icon = "📚", Desc = "മത്സരപ്പരീക്ഷാ ഗൈഡുകളും പ്രത്യേക പത്രികകളും." },
+    };
+}
+
+<div class="max-w-4xl mx-auto py-10 px-4 space-y-8">
+    <div class="text-center space-y-2 border-b border-slate-200 pb-6">
+        <h1 class="text-3xl font-bold text-slate-900">പത്രങ്ങളും ആനുകാലിക പ്രസിദ്ധീകരണങ്ങളും</h1>
+        <p class="text-xs text-slate-600">
+            പ്രതിദിന പത്രങ്ങളും വിവിധ ആനുകാലിക പ്രസിദ്ധീകരണങ്ങളും വായനക്കാർക്ക് ലഭ്യമാക്കുക എന്നത് ഗ്രന്ഥശാലയുടെ പ്രധാന സേവനങ്ങളിൽ ഒന്നാണ്.
+        </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        @foreach (var sec in sections)
+        {
+            <div class="custom-card p-5 space-y-2">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-lg bg-emerald-100 text-[#0d5c46] flex items-center justify-center shrink-0 text-base">
+                        @sec.Icon
+                    </div>
+                    <h3 class="font-bold text-sm text-slate-900">@sec.Title</h3>
+                </div>
+                <p class="text-xs text-slate-600 pl-12">@sec.Desc</p>
+            </div>
+        }
+    </div>
+
+    <div class="bg-slate-100 p-4 rounded-lg text-center text-xs text-slate-600">
+        ലഭ്യമായ പ്രസിദ്ധീകരണങ്ങളുടെ പട്ടിക ലൈബ്രറി അധികൃതർക്ക് ആവശ്യാനുസരണം അപ്ഡേറ്റ് ചെയ്യാം.
+    </div>
+</div>

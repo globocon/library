@@ -1,0 +1,33 @@
+@page "/digital-library"
+@{
+    ViewData["Title"] = "ഡിജിറ്റൽ ലൈബ്രറി | നെടുങ്കണ്ടം പബ്ലിക് ലൈബ്രറി";
+    var services = new[]
+    {
+        new { Title = "Online Catalogue", Desc = "പുസ്തക ലഭ്യത ഓൺലൈനായി പരിശോധിക്കാം." },
+        new { Title = "Mobile-friendly Website", Desc = "മൊബൈലിലൂടെ എളുപ്പത്തിൽ ഉപയോഗിക്കാവുന്ന വെബ്‌സൈറ്റ്." },
+        new { Title = "Digital Resources", Desc = "ഡിജിറ്റൽ പഠന വിഭവങ്ങൾ." },
+        new { Title = "E-books", Desc = "തിരഞ്ഞെടുത്ത ഇ-ബുക്കുകളുടെ ലിങ്കുകൾ." },
+        new { Title = "Digital Newspapers", Desc = "ഡിജിറ്റൽ ദിനപത്രങ്ങൾ." },
+        new { Title = "Educational Resources", Desc = "വിദ്യാഭ്യാസപരമായ ഓൺലൈൻ വിഭവങ്ങൾ." },
+    };
+}
+
+<div class="max-w-4xl mx-auto py-10 px-4 space-y-8">
+    <div class="bg-indigo-50 border border-indigo-200 rounded-xl p-6 text-center space-y-2">
+        <span class="text-3xl text-indigo-700 mx-auto block">💻</span>
+        <h1 class="text-3xl font-bold text-indigo-950">ഡിജിറ്റൽ ലൈബ്രറി</h1>
+        <p class="text-xs text-indigo-800">
+            കാലത്തിനനുസരിച്ച് ഗ്രന്ഥശാലയെ ഒരു Digital Knowledge Centre ആക്കി വികസിപ്പിക്കുന്നു.
+        </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        @foreach (var s in services)
+        {
+            <div class="custom-card p-5 space-y-1">
+                <div class="font-bold text-sm text-[#0d5c46]">@s.Title</div>
+                <div class="text-xs text-slate-600">@s.Desc</div>
+            </div>
+        }
+    </div>
+</div>

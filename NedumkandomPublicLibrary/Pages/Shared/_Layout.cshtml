@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>@(ViewData["Title"] ?? "നെടുങ്കണ്ടം പബ്ലിക് ലൈബ്രറി | Nedumkandom Public Library")</title>
+    <meta name="description" content="നെടുങ്കണ്ടം പബ്ലിക് ലൈബ്രറി, ഇടുക്കി, കേരളം - അറിവിലേക്ക് ഒരു വാതിൽ | വായനയിലൂടെ ഒരു സമൂഹം. ഓൺലൈൻ അംഗത്വം, പുസ്തകങ്ങൾ, പരിപാടികൾ." />
+    <meta name="keywords" content="Nedumkandom Public Library, നെടുങ്കണ്ടം ലൈബ്രറി, ഇടുക്കി ലൈബ്രറി, കേരള പൊതുഗ്രന്ഥശാല, Malayalam Library" />
+
+    <!-- Preconnect & Google Fonts (Noto Sans Malayalam) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body class="site-body">
+    <partial name="_Navbar" />
+    
+    <main role="main" class="site-main">
+        @RenderBody()
+    </main>
+
+    <partial name="_Footer" />
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
