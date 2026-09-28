@@ -13,7 +13,7 @@ public class LibraryOptions
     
     public string Tagline { get; set; } = "അറിവിലേക്ക് ഒരു വാതിൽ | വായനയിലൂടെ ഒരു സമൂഹം";
     public string SubTagline { get; set; } = "നാടിന്റെ വായനയ്ക്കും അറിവിനും ഒപ്പം.";
-    public string Vision { get; set; } = "ഓരോ വീട്ടിലും ഒരു വായനക്കാരൻ — ഓരോ മനസ്സിലും ഒരു നല്ല പുസ്തകം.";
+    public string Vision { get; set; } = "എല്ലാ വീട്ടിലും വായനക്കാർ\nഎല്ലാ മനസിലും ഒരു നല്ല പുസ്തകം";
     public string VisionFull { get; set; } = "നെടുങ്കണ്ടത്തിന്റെ വായനാ സംസ്കാരത്തെ കൂടുതൽ ശക്തിപ്പെടുത്തുകയും, പുതിയ തലമുറയെ അറിവിലേക്കും സാഹിത്യത്തിലേക്കും ചിന്തയിലേക്കും നയിക്കുകയും ചെയ്യുന്ന ഒരു ജനകീയ പൊതുഗ്രന്ഥശാല.";
 
     public string Phone { get; set; } = "9446823434";
