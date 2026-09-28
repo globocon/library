@@ -90,7 +90,7 @@
                 ഞങ്ങളുടെ ദർശനം
             </div>
             <div class="vision-quote-large">
-                “@Html.Raw(string.Join("<br />", Model.Library.Vision.Split('\n').Select(line => Html.Encode(line))))”
+                “@Model.Library.Vision”
             </div>
             <p class="vision-fulltext">
                 @Model.Library.VisionFull
