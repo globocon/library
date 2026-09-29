@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NedumkandomPublicLibrary.Models;
 
-public class MembershipApplicationModel : IValidatableObject
+public class MembershipApplicationModel
 {
     [Required(ErrorMessage = "ദയവായി താങ്കളുടെ പേര് നൽകുക.")]
     [Display(Name = "പേര്")]
@@ -36,9 +36,9 @@ public class MembershipApplicationModel : IValidatableObject
     public string? Email { get; set; }
 
     [Display(Name = "അംഗത്വ വിഭാഗം")]
-    public string Category { get; set; } = "പൊതുവിഭാഗം";
+    public string Category { get; set; } = "സാധാരണ അംഗം";
 
-    // Minor / Guardian Details (Required when Category == "കുട്ടി")
+    // Guardian Details (optional; retained for the application record and PDF)
     [Display(Name = "രക്ഷകർത്താവിന്റെ പേര്")]
     public string? GuardianName { get; set; }
 
@@ -57,18 +57,4 @@ public class MembershipApplicationModel : IValidatableObject
 
     [Display(Name = "മാസവരി")]
     public string? MonthlyFee { get; set; }
-
-    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-    {
-        if (string.Equals(Category?.Trim(), "കുട്ടി", StringComparison.OrdinalIgnoreCase))
-        {
-            if (string.IsNullOrWhiteSpace(GuardianName))
-            {
-                yield return new ValidationResult(
-                    "മൈനർ ആയതിനാൽ രക്ഷകർത്താവിന്റെ പേര് നൽകുക.",
-                    new[] { nameof(GuardianName) }
-                );
-            }
-        }
-    }
 }

@@ -18,27 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 2. Radio Card Active State & Dynamic Minor/Guardian Section Toggle
+    // 2. Radio Card Active State
     const categoryRadios = document.querySelectorAll('input[name="Form.Category"]');
-    const guardianSection = document.getElementById('guardianSection');
-    const guardianNameInput = document.getElementById('guardianNameInput');
-
-    function updateGuardianVisibility() {
-        const selectedCat = document.querySelector('input[name="Form.Category"]:checked');
-        if (!selectedCat || !guardianSection) return;
-
-        if (selectedCat.value === 'കുട്ടി') {
-            guardianSection.classList.remove('hidden');
-            if (guardianNameInput) {
-                guardianNameInput.setAttribute('required', 'required');
-            }
-        } else {
-            guardianSection.classList.add('hidden');
-            if (guardianNameInput) {
-                guardianNameInput.removeAttribute('required');
-            }
-        }
-    }
 
     // Attach change handlers to all category radio buttons
     categoryRadios.forEach(radio => {
@@ -47,8 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.category-card').forEach(card => card.classList.remove('active'));
             const parentCard = radio.closest('.category-card');
             if (parentCard) parentCard.classList.add('active');
-
-            updateGuardianVisibility();
         });
     });
 
@@ -61,9 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (parentCard) parentCard.classList.add('active');
         });
     });
-
-    // Initial check on load
-    updateGuardianVisibility();
 
     // 3. Form Submit Loading State & Duplicate Submission Prevention
     const membershipForm = document.getElementById('membershipForm');

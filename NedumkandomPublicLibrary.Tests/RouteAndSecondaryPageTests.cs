@@ -66,7 +66,7 @@ public class RouteAndSecondaryPageTests : IClassFixture<WebApplicationFactory<Pr
         Assert.Contains("Form.Panchayat", content);
         Assert.Contains("Form.Ward", content);
         Assert.Contains("Form.Category", content);
-        Assert.Contains("guardianSection", content);
+        Assert.DoesNotContain("guardianSection", content);
         Assert.Contains("Form.AdmissionFee", content);
         Assert.Contains("Form.Deposit", content);
         Assert.Contains("Form.MonthlyFee", content);

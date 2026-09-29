@@ -104,35 +104,14 @@ public class MembershipValidationTests
         Assert.Contains(results, r => r.ErrorMessage == "ദയവായി വാർഡ് നമ്പർ അല്ലെങ്കിൽ പേര് നൽകുക.");
     }
 
-    [Fact]
-    public void ChildCategory_WithoutGuardianName_ShouldFail_WithExactMalayalamMessage()
+    [Theory]
+    [InlineData("രക്ഷാധികാരി അംഗം")]
+    [InlineData("ജീവകാല അംഗം")]
+    [InlineData("സാധാരണ അംഗം")]
+    public void MembershipCategory_WithoutGuardianName_ShouldPassValidation(string category)
     {
         var model = CreateValidModel();
-        model.Category = "കുട്ടി";
-        model.GuardianName = ""; // Empty guardian name for child
-
-        var results = ValidateModel(model);
-        Assert.Contains(results, r => r.ErrorMessage == "മൈനർ ആയതിനാൽ രക്ഷകർത്താവിന്റെ പേര് നൽകുക.");
-    }
-
-    [Fact]
-    public void ChildCategory_WithGuardianName_ShouldPassValidation()
-    {
-        var model = CreateValidModel();
-        model.Category = "കുട്ടി";
-        model.GuardianName = "തോമസ് ലൂക്കോസ്";
-        model.GuardianRelation = "അച്ഛൻ";
-        model.GuardianPhone = "9446823434";
-
-        var results = ValidateModel(model);
-        Assert.Empty(results);
-    }
-
-    [Fact]
-    public void StandardCategory_WithoutGuardianName_ShouldPassValidation()
-    {
-        var model = CreateValidModel();
-        model.Category = "പൊതുവിഭാഗം";
+        model.Category = category;
         model.GuardianName = null;
 
         var results = ValidateModel(model);
