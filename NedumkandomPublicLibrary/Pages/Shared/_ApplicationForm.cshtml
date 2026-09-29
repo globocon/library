@@ -196,68 +196,13 @@ else
                     9. അംഗത്വ വിഭാഗം
                 </label>
                 <div class="category-radio-grid">
-                    @foreach (var cat in new[] { "കുട്ടി", "വിദ്യാർത്ഥി", "പൊതുവിഭാഗം", "കുടുംബ അംഗത്വം", "മുതിർന്ന പൗരൻ", "മറ്റ്" })
+                    @foreach (var cat in new[] { "രക്ഷാധികാരി അംഗം", "ജീവകാല അംഗം", "സാധാരണ അംഗം" })
                     {
                         <label class="radio-card category-card @(Model.Form.Category == cat ? "active" : "")">
                             <input type="radio" asp-for="Form.Category" value="@cat" class="shrink-0" />
                             <span class="leading-snug">@cat</span>
                         </label>
                     }
-                </div>
-            </div>
-
-            <!-- ===================================================================
-                രക്ഷകർത്താവിന്റെ വിവരങ്ങൾ (കുട്ടി / മൈനർ ആണെങ്കിൽ മാത്രം കാണിക്കുന്നത്)
-                =================================================================== -->
-            <div id="guardianSection" class="guardian-container @(Model.Form.Category == "കുട്ടി" ? "" : "hidden")">
-                <div class="guardian-header">
-                    <h3 class="guardian-title">
-                        രക്ഷകർത്താവിന്റെ വിവരങ്ങൾ (മൈനർ ആണെങ്കിൽ)
-                    </h3>
-                    <p class="guardian-subtitle">
-                        * കുട്ടി വിഭാഗം തെരഞ്ഞെടുത്തതിനാൽ രക്ഷകർത്താവിന്റെ വിവരങ്ങൾ നൽകുക:
-                    </p>
-                </div>
-
-                <div class="two-col-grid">
-                    <!-- രക്ഷകർത്താവിന്റെ പേര് -->
-                    <div class="flex-col-wrapper">
-                        <div class="label-wrapper-guardian">
-                            <label asp-for="Form.GuardianName" class="font-bold text-slate-900 leading-snug">
-                                രക്ഷകർത്താവിന്റെ പേര് *
-                            </label>
-                        </div>
-                        <input asp-for="Form.GuardianName"
-                               type="text"
-                               id="guardianNameInput"
-                               placeholder="രക്ഷകർത്താവിന്റെ പൂർണ്ണ പേര്"
-                               class="form-input-box @(ViewData.ModelState["Form.GuardianName"]?.Errors.Count > 0 ? "input-error" : "")" />
-                        <span asp-validation-for="Form.GuardianName" class="field-error-text"></span>
-                    </div>
-
-                    <!-- ബന്ധം -->
-                    <div class="flex-col-wrapper">
-                        <div class="label-wrapper-guardian">
-                            <label asp-for="Form.GuardianRelation" class="font-bold text-slate-900 leading-snug">
-                                ബന്ധം (അച്ഛൻ / അമ്മ / രക്ഷിതാവ്)
-                            </label>
-                        </div>
-                        <input asp-for="Form.GuardianRelation"
-                               type="text"
-                               placeholder="ഉദാ: അച്ഛൻ / അമ്മ / രക്ഷിതാവ്"
-                               class="form-input-box" />
-                    </div>
-
-                    <!-- രക്ഷകർത്താവിന്റെ ഫോൺ -->
-                    <div class="guardian-full-width">
-                        <label asp-for="Form.GuardianPhone" class="form-label-small">
-                            രക്ഷകർത്താവിന്റെ മൊബൈൽ / ഫോൺ നമ്പർ (ഓപ്ഷണൽ)
-                        </label>
-                        <input asp-for="Form.GuardianPhone"
-                               type="tel"
-                               placeholder="10 അക്ക മൊബൈൽ നമ്പർ"
-                               class="form-input-box" />
-                    </div>
                 </div>
             </div>
 
